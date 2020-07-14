@@ -1,5 +1,5 @@
 import { fifaData } from './fifa.js';
-console.log(fifaData);
+// console.log(fifaData);
 
 console.log('its working');
 // ⚽️ M  V P ⚽️ //
@@ -29,11 +29,13 @@ const homeTeam = fifaData.filter((name) => {
 
 /* Task 2: Create a function called  getFinals that takes `data` as an argument and returns an array of objects with only finals data */
 
-function getFinals(/* code here */) {
+function getFinals(data) {
 
-    /* code here */
+    let finalScores = data.filter(item => item.Stage === "Final");
+    return finalScores;
 
 };
+console.log(getFinals(fifaData));
 
 /* Task 3: Implement a higher-order function called `getYears` that accepts the callback function `getFinals`, and returns an array called `years` containing all of the years in the dataset */
 
