@@ -51,19 +51,24 @@ console.log(getYears(getFinals(fifaData)));
 /* Task 5: Implement a higher-order function called `getWinners`, that accepts the callback function `getFinals()` and determine the winner (home or away) of each `finals` game. Return the name of all winning countries in an array called `winners` */ 
 
 function getWinners(callback) {
-    let cb = callback(fifaData);
-    let winners = [];
-    for(let i = 0; i <cb.length; i++){
-        if(cb[i]["Home Team Name"] > cb[i]["Away Team Name"]){
-            winners.push(cb[i]["Home Team Name"]);
+
+    const winNames = callback.map((item) => {
+        if(item["Home Team Goals"] > item["Away Team Goals"]){
+            return item["Home Team Name"];
+        }else if(item["Away Team Goals"] > item["Home Team Goals"]){
+            return item["Away Team Name"];
+        }else if(item["Away Team Goals"] === item["Home Team Goals"] && item["Win conditions"].split(' ')[0] === item["Home Team Name"]){
+            return item["Home Team Name"];
+        }else if(item["Away Team Goals"] === item["Home Team Goals"] && item["Win conditions"].split(' ')[0] === item["Away Team Name"]){
+            console.log(winName);
+            return item["Away Team Name"];
         }
-        else{
-            winners.push(cb[i]["Away Team Name"]);
-        }
+        
+    });
+    return winNames;
     }
-    return winners;
-};
-console.log(getWinners(getFinals));
+    
+    console.log(getWinners(getFinals(fifaData)));
 
 // getWinners();
 
